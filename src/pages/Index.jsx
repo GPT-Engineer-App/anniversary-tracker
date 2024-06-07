@@ -48,7 +48,7 @@ const Index = () => {
   return (
     <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       <VStack spacing={4} width="100%">
-        <Text fontSize="2xl">纪念日 APP</Text>
+        <Text fontSize="2xl">纪念日</Text>
         <HStack width="100%">
           <Input placeholder="输入新的纪念日事件" value={newEvent.name} onChange={(e) => setNewEvent({ ...newEvent, name: e.target.value })} />
           <Input type="date" value={newEvent.date} onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })} />

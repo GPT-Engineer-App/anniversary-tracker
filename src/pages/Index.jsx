@@ -4,7 +4,7 @@ import { FaTrash, FaPlus } from "react-icons/fa";
 
 const Index = () => {
   const [events, setEvents] = useState([]);
-  const [newEvent, setNewEvent] = useState("");
+  const [newEvent, setNewEvent] = useState({ name: "", date: "" });
   const [reminder, setReminder] = useState(null);
   const toast = useToast();
 
@@ -24,7 +24,7 @@ const Index = () => {
   }, [reminder, toast]);
 
   const addEvent = () => {
-    if (newEvent.trim() === "") {
+    if (newEvent.name.trim() === "") {
       toast({
         title: "事件名称不能为空",
         status: "error",

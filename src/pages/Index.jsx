@@ -35,20 +35,9 @@ const Index = () => {
     }
     const eventDate = new Date(newEvent.date);
     const now = new Date();
-    const timeUntilEvent = eventDate - now;
+    const timeSinceEvent = Math.floor((now - eventDate) / (1000 * 60 * 60 * 24));
 
-    if (timeUntilEvent <= 0) {
-      toast({
-        title: "事件日期必须是未来的日期",
-        status: "error",
-        duration: 2000,
-        isClosable: true,
-      });
-      return;
-    }
-
-    setEvents([...events, { id: Date.now(), name: newEvent.name, date: newEvent.date }]);
-    setReminder({ name: newEvent.name, time: timeUntilEvent });
+    setEvents([...events, { id: Date.now(), name: newEvent.name, date: newEvent.date, daysSince: timeSinceEvent }]);
     setNewEvent({ name: "", date: "" });
   };
 
@@ -69,7 +58,7 @@ const Index = () => {
           {events.map((event) => (
             <HStack key={event.id} width="100%" justifyContent="space-between">
               <Text>
-                {event.name} - {new Date(event.date).toLocaleDateString()}
+                {event.name} - {new Date(event.date).toLocaleDateString()} ({event.daysSince} 天前)
               </Text>
               <IconButton aria-label="Delete Event" icon={<FaTrash />} onClick={() => deleteEvent(event.id)} />
             </HStack>
